@@ -1,0 +1,966 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Friendly Plant — Award-Winning Landscaping in Johannesburg</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --cream: #f5f0e8;
+      --sage: #7a8f6e;
+      --dark-sage: #4a5c40;
+      --deep: #1a2318;
+      --earth: #8b6f47;
+      --gold: #c9a84c;
+      --light-sage: #e8ede4;
+      --white: #fdfcf9;
+      --text: #2d3a29;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Jost', sans-serif;
+      background: var(--white);
+      color: var(--text);
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1.2rem 5%;
+      background: rgba(253,252,249,0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(122,143,110,0.15);
+      transition: box-shadow 0.3s;
+    }
+    nav.scrolled { box-shadow: 0 2px 24px rgba(26,35,24,0.08); }
+
+    .nav-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.4rem;
+      font-weight: 500;
+      color: var(--deep);
+      text-decoration: none;
+      letter-spacing: 0.02em;
+    }
+    .nav-logo span { color: var(--sage); }
+
+    .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+    .nav-links a {
+      font-size: 0.82rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--sage); }
+
+    .nav-cta {
+      background: var(--dark-sage);
+      color: var(--white) !important;
+      padding: 0.65rem 1.6rem;
+      border-radius: 2px;
+      font-size: 0.78rem !important;
+      letter-spacing: 0.12em !important;
+      transition: background 0.2s !important;
+    }
+    .nav-cta:hover { background: var(--sage) !important; color: var(--white) !important; }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-image {
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-image img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      transform: scale(1.05);
+      animation: heroZoom 12s ease-out forwards;
+    }
+    @keyframes heroZoom { to { transform: scale(1); } }
+
+    .hero-image::after {
+      content: '';
+      position: absolute; inset: 0;
+      background: linear-gradient(to right, rgba(26,35,24,0.08), transparent);
+    }
+
+    .hero-content {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 9rem 6% 5rem 7%;
+      background: var(--cream);
+      position: relative;
+    }
+    .hero-content::before {
+      content: '';
+      position: absolute;
+      top: 0; bottom: 0; left: -1px;
+      width: 4px;
+      background: linear-gradient(to bottom, transparent, var(--sage), var(--gold), transparent);
+    }
+
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      font-size: 0.72rem; font-weight: 600;
+      letter-spacing: 0.15em; text-transform: uppercase;
+      color: var(--earth);
+      margin-bottom: 1.8rem;
+      animation: fadeUp 0.8s ease both;
+    }
+    .hero-badge::before {
+      content: '';
+      display: inline-block;
+      width: 28px; height: 1px;
+      background: var(--earth);
+    }
+
+    .hero-content h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.8rem, 4.5vw, 4.2rem);
+      font-weight: 400;
+      line-height: 1.1;
+      color: var(--deep);
+      margin-bottom: 1.6rem;
+      animation: fadeUp 0.8s 0.15s ease both;
+    }
+    .hero-content h1 em {
+      font-style: italic;
+      color: var(--sage);
+    }
+
+    .hero-desc {
+      font-size: 0.98rem;
+      line-height: 1.75;
+      color: #4a5540;
+      max-width: 420px;
+      margin-bottom: 2rem;
+      animation: fadeUp 0.8s 0.25s ease both;
+    }
+
+    .hero-quote {
+      border-left: 2px solid var(--gold);
+      padding: 0.8rem 1.2rem;
+      margin-bottom: 2.5rem;
+      animation: fadeUp 0.8s 0.35s ease both;
+    }
+    .hero-quote p {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 1.05rem;
+      color: var(--earth);
+      line-height: 1.5;
+    }
+    .hero-quote cite {
+      font-size: 0.75rem;
+      letter-spacing: 0.08em;
+      color: var(--sage);
+      font-style: normal;
+      margin-top: 0.3rem;
+      display: block;
+    }
+
+    .hero-buttons {
+      display: flex; gap: 1rem; flex-wrap: wrap;
+      animation: fadeUp 0.8s 0.45s ease both;
+    }
+
+    .btn-primary {
+      background: var(--dark-sage);
+      color: var(--white);
+      padding: 0.9rem 2rem;
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      text-decoration: none;
+      border-radius: 2px;
+      transition: background 0.25s, transform 0.2s;
+      display: inline-block;
+    }
+    .btn-primary:hover { background: var(--sage); transform: translateY(-1px); }
+
+    .btn-outline {
+      border: 1.5px solid var(--dark-sage);
+      color: var(--dark-sage);
+      padding: 0.9rem 2rem;
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      text-decoration: none;
+      border-radius: 2px;
+      transition: all 0.25s;
+      display: inline-block;
+    }
+    .btn-outline:hover { background: var(--dark-sage); color: var(--white); transform: translateY(-1px); }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── TRUST BAR ── */
+    .trust-bar {
+      background: var(--deep);
+      padding: 1.1rem 5%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 3rem;
+      flex-wrap: wrap;
+    }
+    .trust-item {
+      display: flex; align-items: center; gap: 0.6rem;
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(245,240,232,0.7);
+    }
+    .trust-item span { color: var(--gold); font-size: 1rem; }
+
+    /* ── SECTION COMMONS ── */
+    .section { padding: 7rem 5%; }
+    .section-label {
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--sage);
+      margin-bottom: 0.8rem;
+      display: flex; align-items: center; gap: 0.7rem;
+    }
+    .section-label::before {
+      content: '';
+      display: inline-block;
+      width: 24px; height: 1px;
+      background: var(--sage);
+    }
+    .section-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2rem, 3.5vw, 3.2rem);
+      font-weight: 400;
+      color: var(--deep);
+      line-height: 1.15;
+      margin-bottom: 1rem;
+    }
+    .section-sub {
+      font-size: 0.95rem;
+      color: #5a6b52;
+      line-height: 1.7;
+      max-width: 520px;
+    }
+
+    /* ── CONTACT STRIP ── */
+    .contact-strip {
+      background: var(--light-sage);
+      padding: 4rem 5%;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+    }
+    .contact-strip-text h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.4rem;
+      font-weight: 400;
+      color: var(--deep);
+      margin-bottom: 0.6rem;
+    }
+    .contact-strip-text p {
+      color: var(--sage);
+      font-size: 0.88rem;
+      letter-spacing: 0.05em;
+    }
+
+    .contact-form { display: grid; gap: 1rem; }
+    .contact-form input,
+    .contact-form textarea {
+      background: var(--white);
+      border: 1px solid rgba(122,143,110,0.3);
+      border-radius: 2px;
+      padding: 0.85rem 1.1rem;
+      font-family: 'Jost', sans-serif;
+      font-size: 0.88rem;
+      color: var(--text);
+      transition: border-color 0.2s;
+      outline: none;
+      width: 100%;
+    }
+    .contact-form input:focus,
+    .contact-form textarea:focus { border-color: var(--sage); }
+    .contact-form textarea { height: 110px; resize: vertical; }
+    .contact-form input::placeholder,
+    .contact-form textarea::placeholder { color: #9aaa92; }
+
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+
+    /* ── SERVICES ── */
+    #services { background: var(--white); }
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2px;
+      margin-top: 3.5rem;
+      background: rgba(122,143,110,0.15);
+    }
+    .service-card {
+      background: var(--white);
+      padding: 2.5rem 2rem;
+      transition: background 0.3s;
+      position: relative;
+      overflow: hidden;
+    }
+    .service-card::before {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0;
+      height: 2px; width: 0;
+      background: var(--gold);
+      transition: width 0.4s ease;
+    }
+    .service-card:hover { background: var(--light-sage); }
+    .service-card:hover::before { width: 100%; }
+
+    .service-icon {
+      width: 44px; height: 44px;
+      margin-bottom: 1.4rem;
+      color: var(--sage);
+    }
+    .service-card h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.4rem;
+      font-weight: 500;
+      color: var(--deep);
+      margin-bottom: 0.7rem;
+    }
+    .service-card p {
+      font-size: 0.88rem;
+      line-height: 1.7;
+      color: #5a6b52;
+    }
+
+    /* ── WHY US ── */
+    #why-us {
+      background: var(--deep);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+    }
+    .why-image { position: relative; overflow: hidden; min-height: 550px; }
+    .why-image img { width: 100%; height: 100%; object-fit: cover; }
+    .why-image::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: linear-gradient(to right, transparent, rgba(26,35,24,0.4));
+      z-index: 1;
+    }
+
+    .why-content {
+      padding: 5rem 6%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    .why-content .section-label { color: var(--gold); }
+    .why-content .section-label::before { background: var(--gold); }
+    .why-content .section-title { color: var(--cream); margin-bottom: 0.8rem; }
+    .why-content .section-sub { color: rgba(245,240,232,0.65); margin-bottom: 3rem; }
+
+    .why-points { display: grid; gap: 1.8rem; }
+    .why-point { display: flex; gap: 1.2rem; }
+    .why-dot {
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: var(--gold);
+      margin-top: 0.4rem;
+      flex-shrink: 0;
+    }
+    .why-point h4 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.2rem;
+      font-weight: 500;
+      color: var(--cream);
+      margin-bottom: 0.3rem;
+    }
+    .why-point p {
+      font-size: 0.85rem;
+      line-height: 1.65;
+      color: rgba(245,240,232,0.6);
+    }
+
+    /* ── GALLERY ── */
+    #gallery { background: var(--cream); padding: 7rem 5%; }
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      grid-template-rows: auto auto;
+      gap: 1.2rem;
+      margin-top: 3.5rem;
+    }
+    .gallery-item {
+      position: relative;
+      overflow: hidden;
+      border-radius: 2px;
+      cursor: pointer;
+    }
+    .gallery-item:first-child,
+    .gallery-item:nth-child(4) { grid-row: span 1; }
+    .gallery-item img {
+      width: 100%; height: 280px;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.6s ease;
+    }
+    .gallery-item:hover img { transform: scale(1.06); }
+
+    .gallery-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(26,35,24,0.75) 0%, transparent 55%);
+      opacity: 0;
+      transition: opacity 0.4s;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 1.5rem;
+    }
+    .gallery-item:hover .gallery-overlay { opacity: 1; }
+    .gallery-tag {
+      font-size: 0.65rem;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.3rem;
+    }
+    .gallery-overlay h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.25rem;
+      font-weight: 400;
+      color: var(--white);
+    }
+
+    /* ── REVIEWS ── */
+    #reviews { background: var(--white); padding: 7rem 5%; }
+    .reviews-header {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      margin-bottom: 3.5rem;
+    }
+    .reviews-rating {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1rem;
+      color: var(--sage);
+    }
+    .reviews-rating strong {
+      font-size: 3rem;
+      font-weight: 300;
+      color: var(--deep);
+      display: block;
+      line-height: 1;
+    }
+
+    .reviews-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+    .review-card {
+      border: 1px solid rgba(122,143,110,0.2);
+      padding: 2.2rem;
+      border-radius: 2px;
+      position: relative;
+      transition: border-color 0.3s, box-shadow 0.3s;
+    }
+    .review-card:hover {
+      border-color: var(--sage);
+      box-shadow: 0 8px 32px rgba(122,143,110,0.1);
+    }
+    .review-card::before {
+      content: '"';
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 5rem;
+      color: var(--light-sage);
+      position: absolute;
+      top: 0.5rem; right: 1.2rem;
+      line-height: 1;
+    }
+    .review-stars { color: var(--gold); font-size: 0.85rem; margin-bottom: 1rem; letter-spacing: 0.05em; }
+    .review-text {
+      font-size: 0.9rem;
+      line-height: 1.75;
+      color: #4a5540;
+      margin-bottom: 1.5rem;
+      font-style: italic;
+    }
+    .reviewer-name {
+      font-weight: 600;
+      font-size: 0.85rem;
+      color: var(--deep);
+    }
+    .reviewer-role {
+      font-size: 0.75rem;
+      color: var(--sage);
+      letter-spacing: 0.05em;
+      margin-top: 0.15rem;
+    }
+
+    /* ── CTA BAND ── */
+    .cta-band {
+      background: var(--light-sage);
+      padding: 5.5rem 5%;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .cta-band::before {
+      content: '';
+      position: absolute;
+      top: -60px; left: 50%;
+      transform: translateX(-50%);
+      width: 600px; height: 600px;
+      background: radial-gradient(circle, rgba(122,143,110,0.15) 0%, transparent 70%);
+    }
+    .cta-band h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2rem, 3.5vw, 3rem);
+      font-weight: 400;
+      color: var(--deep);
+      margin-bottom: 1rem;
+      position: relative;
+    }
+    .cta-band p {
+      font-size: 0.95rem;
+      color: #5a6b52;
+      max-width: 480px;
+      margin: 0 auto 2.5rem;
+      line-height: 1.7;
+      position: relative;
+    }
+    .cta-buttons { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; position: relative; }
+    .btn-phone {
+      color: var(--dark-sage);
+      font-size: 0.88rem;
+      font-weight: 600;
+      text-decoration: none;
+      display: flex; align-items: center; gap: 0.4rem;
+      padding: 0.9rem 1.5rem;
+      border: 1.5px solid var(--dark-sage);
+      border-radius: 2px;
+      transition: all 0.25s;
+    }
+    .btn-phone:hover { background: var(--dark-sage); color: var(--white); }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--deep);
+      padding: 4rem 5% 2rem;
+      color: rgba(245,240,232,0.65);
+    }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      gap: 4rem;
+      padding-bottom: 3rem;
+      border-bottom: 1px solid rgba(245,240,232,0.1);
+      margin-bottom: 2rem;
+    }
+    .footer-brand-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.6rem;
+      font-weight: 400;
+      color: var(--cream);
+      margin-bottom: 0.8rem;
+    }
+    .footer-brand-name span { color: var(--gold); }
+    .footer-brand-desc {
+      font-size: 0.85rem;
+      line-height: 1.7;
+      max-width: 300px;
+    }
+
+    .footer-col h4 {
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--cream);
+      margin-bottom: 1.2rem;
+    }
+    .footer-col ul { list-style: none; display: grid; gap: 0.6rem; }
+    .footer-col ul li a {
+      text-decoration: none;
+      color: rgba(245,240,232,0.6);
+      font-size: 0.85rem;
+      transition: color 0.2s;
+    }
+    .footer-col ul li a:hover { color: var(--gold); }
+    .footer-col ul li { font-size: 0.85rem; }
+
+    .footer-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.78rem;
+    }
+
+    /* ── SCROLL REVEAL ── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(32px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ── MOBILE ── */
+    @media (max-width: 900px) {
+      .hero { grid-template-columns: 1fr; }
+      .hero-image { height: 50vw; }
+      .hero-content { padding: 6rem 6% 4rem; }
+      .contact-strip { grid-template-columns: 1fr; gap: 2.5rem; }
+      .form-row { grid-template-columns: 1fr; }
+      #why-us { grid-template-columns: 1fr; }
+      .why-image { min-height: 300px; }
+      .services-grid { grid-template-columns: 1fr 1fr; }
+      .gallery-grid { grid-template-columns: 1fr 1fr; }
+      .reviews-grid { grid-template-columns: 1fr; }
+      .footer-grid { grid-template-columns: 1fr; gap: 2rem; }
+      .reviews-header { flex-direction: column; align-items: flex-start; gap: 1rem; }
+    }
+    @media (max-width: 640px) {
+      .nav-links { display: none; }
+      .services-grid { grid-template-columns: 1fr; }
+      .gallery-grid { grid-template-columns: 1fr; }
+      .trust-bar { gap: 1.5rem; }
+    }
+  </style>
+</head>
+<body id="top">
+
+<!-- NAV -->
+<nav id="mainNav">
+  <a href="#top" class="nav-logo">The Friendly <span>Plant</span></a>
+  <ul class="nav-links">
+    <li><a href="#services">Services</a></li>
+    <li><a href="#why-us">Why Us</a></li>
+    <li><a href="#gallery">Gallery</a></li>
+    <li><a href="#reviews">Reviews</a></li>
+    <li><a href="#contact" class="nav-cta">Get a Quote</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-image">
+    <img
+      src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1200&q=80"
+      alt="Lush Johannesburg garden at golden hour"
+    />
+  </div>
+  <div class="hero-content">
+    <div class="hero-badge">Award-winning since 2006</div>
+    <h1>Your dream garden,<br><em>brought to life.</em></h1>
+    <p class="hero-desc">Johannesburg's premier landscape design and build studio. From concept and 3D plans to installation and our in-house plant farm — one team, end to end.</p>
+    <blockquote class="hero-quote">
+      <p>"Gardens for every budget! Let us create your very own paradise at home."</p>
+      <cite>— Craig De Necker</cite>
+    </blockquote>
+    <div class="hero-buttons">
+      <a href="#contact" class="btn-primary">Start Your Project</a>
+      <a href="#gallery" class="btn-outline">View Portfolio</a>
+    </div>
+  </div>
+</section>
+
+<!-- TRUST BAR -->
+<div class="trust-bar">
+  <div class="trust-item"><span>★</span> Award-Winning Designs</div>
+  <div class="trust-item"><span>🌿</span> In-House Plant Farm</div>
+  <div class="trust-item"><span>📅</span> Est. 2006 · Trusted</div>
+  <div class="trust-item"><span>💧</span> Indigenous &amp; Water-Wise</div>
+  <div class="trust-item"><span>🏆</span> Internationally Recognized</div>
+</div>
+
+<!-- CONTACT STRIP -->
+<div class="contact-strip" id="contact">
+  <div class="contact-strip-text">
+    <h2>Let's grow together</h2>
+    <p>Free consultation · No obligation</p>
+  </div>
+  <div class="contact-form">
+    <div class="form-row">
+      <input type="text" placeholder="Full name" />
+      <input type="email" placeholder="Email" />
+    </div>
+    <input type="tel" placeholder="Phone" />
+    <textarea placeholder="Tell us about your project"></textarea>
+    <button type="button" class="btn-primary" style="border:none;cursor:pointer;width:fit-content;">Send Inquiry</button>
+  </div>
+</div>
+
+<!-- SERVICES -->
+<section class="section" id="services">
+  <div class="reveal">
+    <div class="section-label">What we do</div>
+    <h2 class="section-title">A complete turnkey<br>landscaping service</h2>
+    <p class="section-sub">One team for design, build, and plant supply — so every detail aligns with your vision.</p>
+  </div>
+
+  <div class="services-grid reveal">
+    <div class="service-card">
+      <svg class="service-icon" fill="none" stroke="currentColor" stroke-width="1.4" viewBox="0 0 24 24">
+        <path d="M3 3h18v18H3z" stroke-linejoin="round"/><path d="M8 8h8M8 12h5M8 16h3"/>
+      </svg>
+      <h3>Custom Garden Design</h3>
+      <p>Detailed 2D &amp; 3D planning that visualizes your space before a single plant goes in.</p>
+    </div>
+    <div class="service-card">
+      <svg class="service-icon" fill="none" stroke="currentColor" stroke-width="1.4" viewBox="0 0 24 24">
+        <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+      </svg>
+      <h3>Full Landscape Installation</h3>
+      <p>End-to-end execution from earthworks and irrigation to final planting.</p>
+    </div>
+    <div class="service-card">
+      <svg class="service-icon" fill="none" stroke="currentColor" stroke-width="1.4" viewBox="0 0 24 24">
+        <path d="M12 22V12M12 12C12 7 7 4 3 6M12 12C12 7 17 4 21 6M12 12C10 8 6 7 4 10M12 12C14 8 18 7 20 10"/>
+      </svg>
+      <h3>Premium Plant Supply</h3>
+      <p>Direct from our in-house farm — healthier plants, better prices, full traceability.</p>
+    </div>
+    <div class="service-card">
+      <svg class="service-icon" fill="none" stroke="currentColor" stroke-width="1.4" viewBox="0 0 24 24">
+        <path d="M4 20h16M4 20V10l8-7 8 7v10M9 20v-6h6v6"/>
+      </svg>
+      <h3>Outdoor Features</h3>
+      <p>Bespoke fire pits, water features, patios, bomas and outdoor kitchens.</p>
+    </div>
+    <div class="service-card">
+      <svg class="service-icon" fill="none" stroke="currentColor" stroke-width="1.4" viewBox="0 0 24 24">
+        <path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm0 0v20M2 12h20"/>
+        <path d="M12 2c4 4 4 14 0 20M12 2C8 6 8 16 12 22"/>
+      </svg>
+      <h3>Indigenous &amp; Water-Wise</h3>
+      <p>Sustainable gardens that thrive in the South African climate.</p>
+    </div>
+    <div class="service-card">
+      <svg class="service-icon" fill="none" stroke="currentColor" stroke-width="1.4" viewBox="0 0 24 24">
+        <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/>
+        <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/>
+      </svg>
+      <h3>Renovations &amp; Upgrades</h3>
+      <p>Breathe new life into tired gardens with thoughtful, modern enhancements.</p>
+    </div>
+  </div>
+</section>
+
+<!-- WHY US -->
+<section id="why-us">
+  <div class="why-image">
+    <img src="https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=900&q=80" alt="Garden designer at work" />
+  </div>
+  <div class="why-content reveal">
+    <div class="section-label">Why The Friendly Plant</div>
+    <h2 class="section-title">More than landscapers —<br><em style="color:var(--gold)">garden architects.</em></h2>
+    <p class="section-sub">Established in 2006, we combine creative design, deep horticultural expertise and skilled construction in a single, accountable team.</p>
+    <div class="why-points">
+      <div class="why-point">
+        <div class="why-dot"></div>
+        <div>
+          <h4>Turnkey project management</h4>
+          <p>From sketch to soil — one accountable team delivering on time and on budget.</p>
+        </div>
+      </div>
+      <div class="why-point">
+        <div class="why-dot"></div>
+        <div>
+          <h4>Unrivaled horticultural expertise</h4>
+          <p>Decades of plant knowledge tailored to South African conditions.</p>
+        </div>
+      </div>
+      <div class="why-point">
+        <div class="why-dot"></div>
+        <div>
+          <h4>Our own plant farm</h4>
+          <p>Healthier, better-priced stock with full quality control end to end.</p>
+        </div>
+      </div>
+      <div class="why-point">
+        <div class="why-dot"></div>
+        <div>
+          <h4>Award-winning, internationally</h4>
+          <p>Recognized work for residential, estate and commercial clients worldwide.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section id="gallery">
+  <div class="reveal">
+    <div class="section-label">Our work</div>
+    <h2 class="section-title">A glimpse of our creations</h2>
+    <p class="section-sub">Stunning transformations that blend artistry with horticulture.</p>
+  </div>
+
+  <div class="gallery-grid reveal">
+    <div class="gallery-item">
+      <img src="https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?w=600&q=80" alt="Modern Patio with Fire Pit" />
+      <div class="gallery-overlay">
+        <div class="gallery-tag">Outdoor Living</div>
+        <h3>Modern Patio with Fire Pit</h3>
+      </div>
+    </div>
+    <div class="gallery-item">
+      <img src="https://images.unsplash.com/photo-1585320806297-9794b3e4eeae?w=600&q=80" alt="Estate Lawns" />
+      <div class="gallery-overlay">
+        <div class="gallery-tag">Luxury Estate</div>
+        <h3>Estate Lawns &amp; Topiary</h3>
+      </div>
+    </div>
+    <div class="gallery-item">
+      <img src="https://images.unsplash.com/photo-1501139083538-0139583c060f?w=600&q=80" alt="Water Feature" />
+      <div class="gallery-overlay">
+        <div class="gallery-tag">Water Features</div>
+        <h3>Tranquil Water Feature</h3>
+      </div>
+    </div>
+    <div class="gallery-item">
+      <img src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=600&q=80" alt="Outdoor Kitchen" />
+      <div class="gallery-overlay">
+        <div class="gallery-tag">Entertainment</div>
+        <h3>Outdoor Kitchen &amp; Boma</h3>
+      </div>
+    </div>
+    <div class="gallery-item">
+      <img src="https://images.unsplash.com/photo-1598902108854-10e335adac99?w=600&q=80" alt="Indigenous Garden" />
+      <div class="gallery-overlay">
+        <div class="gallery-tag">Sustainable</div>
+        <h3>Indigenous Water-Wise Garden</h3>
+      </div>
+    </div>
+    <div class="gallery-item">
+      <img src="https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=600&q=80" alt="Urban Courtyard" />
+      <div class="gallery-overlay">
+        <div class="gallery-tag">City Garden</div>
+        <h3>Urban Courtyard</h3>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- REVIEWS -->
+<section id="reviews">
+  <div class="reviews-header reveal">
+    <div>
+      <div class="section-label">Reviews</div>
+      <h2 class="section-title">Loved by clients across Gauteng</h2>
+    </div>
+    <div class="reviews-rating">
+      <strong>4.9</strong>
+      average from 200+ projects
+    </div>
+  </div>
+
+  <div class="reviews-grid reveal">
+    <div class="review-card">
+      <div class="review-stars">★★★★★</div>
+      <p class="review-text">"The Friendly Plant transformed our neglected backyard into a serene oasis. The design was inspired and the installation was flawless. We couldn't be happier."</p>
+      <div class="reviewer-name">Sarah &amp; John Miller</div>
+      <div class="reviewer-role">Sandton Homeowners</div>
+    </div>
+    <div class="review-card">
+      <div class="review-stars">★★★★★</div>
+      <p class="review-text">"Working with their team on a large estate project was a pleasure. Professional, expert, and they delivered on time and on budget. Highly recommended."</p>
+      <div class="reviewer-name">David Chen</div>
+      <div class="reviewer-role">Property Developer</div>
+    </div>
+    <div class="review-card">
+      <div class="review-stars">★★★★★</div>
+      <p class="review-text">"Their indigenous and water-wise expertise gave us a garden that's both stunning and responsible. The plant quality from their farm is exceptional."</p>
+      <div class="reviewer-name">Aisha Patel</div>
+      <div class="reviewer-role">Bryanston Estate Owner</div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA BAND -->
+<div class="cta-band">
+  <h2>Ready to create your perfect<br>outdoor space?</h2>
+  <p>Let's discuss your vision. Book a free, no-obligation consultation and discover the potential of your garden.</p>
+  <div class="cta-buttons">
+    <a href="#contact" class="btn-primary">Request a Consultation</a>
+    <a href="tel:+27111234567" class="btn-phone">📞 011 123 4567</a>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div>
+      <div class="footer-brand-name">The Friendly <span>Plant</span></div>
+      <p>Award-winning landscape design, build &amp; plant supply since 2006. Based in Gauteng, South Africa.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Explore</h4>
+      <ul>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#why-us">Why Us</a></li>
+        <li><a href="#gallery">Gallery</a></li>
+        <li><a href="#reviews">Reviews</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Contact</h4>
+      <ul>
+        <li>info@thefriendlyplant.co.za</li>
+        <li>011 123 4567</li>
+        <li>Johannesburg, Gauteng</li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 The Friendly Plant. All rights reserved.</span>
+  </div>
+</footer>
+
+<script>
+  // Nav shadow on scroll
+  const nav = document.getElementById('mainNav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 40);
+  });
+
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) {
+        setTimeout(() => e.target.classList.add('visible'), i * 80);
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  reveals.forEach(r => observer.observe(r));
+</script>
+</body>
+</html>
